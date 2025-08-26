@@ -73,7 +73,7 @@ END:VCALENDAR`
         </Button>
       </motion.div>
 
-      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+      {/* <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
         <Button
           onClick={generateICS}
           variant="outline"
@@ -82,7 +82,7 @@ END:VCALENDAR`
           <Download className="mr-2 h-4 w-4" />
           Download .ics
         </Button>
-      </motion.div>
+      </motion.div> */}
     </div>
   )
 }

@@ -1,10 +1,12 @@
 import { ThemeProvider } from '@/components/theme-provider'
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter, Playfair_Display } from 'next/font/google'
+import { Inter, MonteCarlo, Playfair_Display } from 'next/font/google'
+import { Toaster } from 'sonner'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' })
+const montecarlo = MonteCarlo({ subsets: ['latin'], variable: '--font-montecarlo', weight: '400' })
 
 export const metadata: Metadata = {
   title: 'Save the Date - Dr. Josephine & Dr. Lucky',
@@ -25,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
-      <body className={`${inter.variable} ${playfair.variable} font-inter`}>
+      <body className={`${inter.variable} ${playfair.variable} ${montecarlo.variable} font-inter`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -33,6 +35,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

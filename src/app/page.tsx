@@ -1,18 +1,31 @@
 "use client"
 
-import { useState, useEffect } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { useState, useEffect, useMemo } from 'react'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 import { Heart, MapPin, Clock, Users, Sparkles } from 'lucide-react'
 import { Logo } from '@/components/logo'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { Countdown } from '@/components/countdown'
 import { CalendarButton } from '@/components/calendar-button'
+import { RsvpModal } from '@/components/rsvp-modal'
 
 export default function Home() {
   const { scrollYProgress } = useScroll()
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%'])
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.3])
+  const prefersReducedMotion = useReducedMotion()
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', prefersReducedMotion ? '0%' : '50%'])
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, prefersReducedMotion ? 1 : 0.3])
+  const floatItems = useMemo(() => {
+    if (typeof window === 'undefined') return [] as Array<{ x: number; y: number; scale: number; duration: number }>
+    const width = window.innerWidth
+    const height = window.innerHeight
+    return [...Array(20)].map(() => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      scale: Math.random() * 0.5 + 0.5,
+      duration: Math.random() * 10 + 10,
+    }))
+  }, [])
   
   const weddingDate = new Date('2025-11-15T16:00:00')
   
@@ -65,12 +78,12 @@ export default function Home() {
 
       {/* Hero Section */}
       <motion.section 
-        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-12 pb-40 mb-40"
+        className="relative min-h-screen flex items-center justify-center overflow-hidden pt-12 pb-40 mb-40 transform-gpu will-change-transform will-change-opacity"
         style={{ y, opacity }}
       >
         {/* Background Image */}
         <div
-          className="absolute inset-0 z-0 bg-center bg-cover opacity-50"
+          className="absolute inset-0 z-0 bg-center bg-cover opacity-35"
           style={{ backgroundImage: 'url("/Couple\'s-image.jpg")' }}
         />
         {/* Upward Fading Gradient Overlay (appears only near bottom) */}
@@ -90,25 +103,13 @@ export default function Home() {
         />
         {/* Floating Elements */}
         <div className="absolute inset-0 overflow-hidden z-10">
-          {[...Array(20)].map((_, i) => (
+          {floatItems.map((item, i) => (
             <motion.div
               key={i}
-              className="absolute opacity-20"
-              initial={{
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
-                scale: Math.random() * 0.5 + 0.5
-              }}
-              animate={{
-                y: [0, -30, 0],
-                rotate: [0, 180, 360],
-                scale: [1, 1.2, 1]
-              }}
-              transition={{
-                duration: Math.random() * 10 + 10,
-                repeat: Infinity,
-                ease: "linear"
-              }}
+              className="absolute opacity-20 will-change-transform transform-gpu"
+              initial={{ x: item.x, y: item.y, scale: item.scale }}
+              animate={prefersReducedMotion ? undefined : { y: [0, -30, 0], rotate: [0, 180, 360], scale: [1, 1.2, 1] }}
+              transition={{ duration: item.duration, repeat: Infinity, ease: 'linear' }}
             >
               <Heart className="w-4 h-4 text-teal-400 data-[color-mode=purple]:text-purple-400" />
             </motion.div>
@@ -143,30 +144,30 @@ export default function Home() {
 
           {/* Names */}
           <motion.div variants={itemVariants} className="mb-8">
-            <h2 className="font-playfair text-2xl md:text-6xl lg:text-7xl font-bold text-gray-800 dark:text-white mb-4">
+            <h2 className="font-snell text-4xl md:text-6xl lg:text-7xl font-bold text-gray-800 dark:text-white mb-4">
               <motion.span
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.8, duration: 0.8 }}
               >
-                Dr. Josephine Gaza
+                Jojo
               </motion.span>
-              <br />
+              
               <motion.span 
-                className="text-teal-600 data-[color-mode=purple]:text-purple-600"
+                className="text-teal-300 data-[color-mode=purple]:text-purple-700"
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.0, duration: 0.8 }}
               >
-                &
+               {" "} & {" "}
               </motion.span>
-              <br />
+              
               <motion.span
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.2, duration: 0.8 }}
               >
-                Dr. Lucky James
+                L.jay
               </motion.span>
             </h2>
           </motion.div>
@@ -182,7 +183,7 @@ export default function Home() {
               November 15, 2025
             </p>
             <p className="text-md text-gray-600 dark:text-gray-400">
-              4:00 PM
+              Abuja, Nigeria
             </p>
           </motion.div>
 
@@ -200,6 +201,7 @@ export default function Home() {
               endDate={new Date(weddingDate.getTime() + (4 * 60 * 60 * 1000))} // 4 hours later
               location="Wedding Venue (Details to follow)"
             />
+            
           </motion.div>
         </motion.div>
 
@@ -231,7 +233,7 @@ export default function Home() {
       >
         <div className="container mx-auto text-center">
           <motion.h3 
-            className="text-3xl md:text-4xl font-playfair text-gray-800 dark:text-white mb-16"
+            className="text-4xl font-snell text-gray-800 dark:text-white mb-16"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
@@ -296,8 +298,14 @@ export default function Home() {
               More details including venue location, accommodation recommendations, 
               and RSVP information will be shared in the coming months.
             </p>
+
+            <div className="mt-6 flex justify-center">
+              <RsvpModal />
+            </div>
           </motion.div>
         </div>
+
+        
       </motion.section>
 
       {/* Footer */}
