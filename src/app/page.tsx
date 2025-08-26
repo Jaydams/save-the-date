@@ -132,7 +132,7 @@ export default function Home() {
           {/* Save the Date */}
           <motion.div variants={itemVariants}>
             <motion.h1 
-              className="text-2xl md:text-3xl lg:text-4xl font-light text-teal-700 dark:text-teal-300 data-[color-mode=purple]:text-purple-700 data-[color-mode=purple]:dark:text-purple-300 mb-4 tracking-wider uppercase"
+              className="text-xl md:text-3xl lg:text-4xl font-light text-teal-700 dark:text-teal-300 data-[color-mode=purple]:text-purple-700 data-[color-mode=purple]:dark:text-purple-300 mb-4 tracking-wider uppercase"
               initial={{ opacity: 0, letterSpacing: "0.5em" }}
               animate={{ opacity: 1, letterSpacing: "0.2em" }}
               transition={{ duration: 1.5, delay: 0.5 }}
@@ -143,7 +143,7 @@ export default function Home() {
 
           {/* Names */}
           <motion.div variants={itemVariants} className="mb-8">
-            <h2 className="font-playfair text-4xl md:text-6xl lg:text-7xl font-bold text-gray-800 dark:text-white mb-4">
+            <h2 className="font-playfair text-2xl md:text-6xl lg:text-7xl font-bold text-gray-800 dark:text-white mb-4">
               <motion.span
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -178,10 +178,10 @@ export default function Home() {
               <Clock className="w-6 h-6 text-teal-600 data-[color-mode=purple]:text-purple-600" />
               <div className="h-px bg-gradient-to-r from-transparent via-teal-400 to-transparent data-[color-mode=purple]:via-purple-400 w-20"></div>
             </div>
-            <p className="text-2xl md:text-3xl font-playfair text-gray-700 dark:text-gray-300 mb-2">
+            <p className="text-xl md:text-3xl font-playfair text-gray-700 dark:text-gray-300 mb-2">
               November 15, 2025
             </p>
-            <p className="text-lg text-gray-600 dark:text-gray-400">
+            <p className="text-md text-gray-600 dark:text-gray-400">
               4:00 PM
             </p>
           </motion.div>
