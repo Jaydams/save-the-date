@@ -144,7 +144,7 @@ export default function Home() {
 
           {/* Names */}
           <motion.div variants={itemVariants} className="mb-8">
-            <h2 className="font-snell text-4xl md:text-6xl lg:text-7xl font-bold text-gray-800 dark:text-white mb-4">
+            <h2 className="font-snell text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800 dark:text-white mb-4">
               <motion.span
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -167,7 +167,7 @@ export default function Home() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 1.2, duration: 0.8 }}
               >
-                L.jay
+              L.jay
               </motion.span>
             </h2>
           </motion.div>
