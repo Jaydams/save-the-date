@@ -5,7 +5,6 @@ import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion
 import type { Variants } from 'framer-motion'
 import { Heart, MapPin, Clock, Users, Sparkles } from 'lucide-react'
 import { Logo } from '@/components/logo'
-import { ThemeToggle } from '@/components/theme-toggle'
 import { Countdown } from '@/components/countdown'
 import { CalendarButton } from '@/components/calendar-button'
 import { RsvpModal } from '@/components/rsvp-modal'
@@ -207,7 +206,7 @@ export default function Home() {
 
         {/* Scroll Indicator */}
         <motion.div
-          className="absolute bottom-8 mb-10 left-1/2 transform -translate-x-1/2"
+          className="absolute bottom-8 mb-10 left-1/2 transform "
           animate={{
             y: [0, 10, 0]
           }}

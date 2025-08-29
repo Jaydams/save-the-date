@@ -8,8 +8,8 @@ type NextThemesProps = React.ComponentProps<typeof NextThemesProvider>
 export function ThemeProvider({
   children,
   attribute = "class",
-  defaultTheme = "system",
-  enableSystem = true,
+  defaultTheme = "dark",
+  enableSystem = false,
   disableTransitionOnChange = false,
   ...props
 }: NextThemesProps) {
