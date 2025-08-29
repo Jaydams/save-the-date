@@ -323,12 +323,7 @@ export default function Home() {
           >
             <Logo size="sm" className="text-white" />
           </motion.div>
-          <p className="text-teal-200 data-[color-mode=purple]:text-purple-200 mb-2">
-            Dr. Josephine Gaza & Dr. Lucky James
-          </p>
-          <p className="text-teal-300 data-[color-mode=purple]:text-purple-300 text-sm">
-            November 15, 2025 • Save the Date
-          </p>
+          
         </div>
       </motion.footer>
     </div>
