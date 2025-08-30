@@ -143,7 +143,7 @@ export default function Home() {
 
           {/* Names */}
           <motion.div variants={itemVariants} className="mb-8">
-            <h2 className="font-snell text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800 dark:text-white mb-4">
+            <h2 className="font-forum text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800 dark:text-white mb-4">
               <motion.span
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -290,12 +290,9 @@ export default function Home() {
             transition={{ delay: 0.6, duration: 0.8 }}
             viewport={{ once: true }}
           >
-            <p className="text-lg text-gray-700 dark:text-gray-300 mb-4 font-playfair italic">
-              "Two hearts, one love, one beautiful journey ahead."
-            </p>
+            
             <p className="text-gray-600 dark:text-gray-400">
-              More details including venue location, accommodation recommendations, 
-              and RSVP information will be shared in the coming months.
+            Additional information will be shared in due course. Kindly RSVP via the link below by 4th October, 2025.
             </p>
 
             <div className="mt-6 flex justify-center">
